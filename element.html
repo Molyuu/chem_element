@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>元素随机选择器</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        #symbol { font-size: 100px; margin: 40px 0; }
+        #info { font-size: 24px; margin-top: 20px; }
+        button { font-size: 20px; margin: 10px; padding: 10px 30px; }
+    </style>
+</head>
+<body>
+    <button id="randomBtn">随机选择元素</button>
+    <button id="showInfoBtn" disabled>显示详细信息</button>
+    <div id="symbol"></div>
+    <div id="info"></div>
+
+    <script>
+        const elements = [
+            {num:1, symbol:"H", period:1, group:1, config:"1s¹"},
+            {num:2, symbol:"He", period:1, group:18, config:"1s²"},
+            {num:3, symbol:"Li", period:2, group:1, config:"[He] 2s¹"},
+            {num:4, symbol:"Be", period:2, group:2, config:"[He] 2s²"},
+            {num:5, symbol:"B", period:2, group:13, config:"[He] 2s² 2p¹"},
+            {num:6, symbol:"C", period:2, group:14, config:"[He] 2s² 2p²"},
+            {num:7, symbol:"N", period:2, group:15, config:"[He] 2s² 2p³"},
+            {num:8, symbol:"O", period:2, group:16, config:"[He] 2s² 2p⁴"},
+            {num:9, symbol:"F", period:2, group:17, config:"[He] 2s² 2p⁵"},
+            {num:10, symbol:"Ne", period:2, group:18, config:"[He] 2s² 2p⁶"},
+            {num:11, symbol:"Na", period:3, group:1, config:"[Ne] 3s¹"},
+            {num:12, symbol:"Mg", period:3, group:2, config:"[Ne] 3s²"},
+            {num:13, symbol:"Al", period:3, group:13, config:"[Ne] 3s² 3p¹"},
+            {num:14, symbol:"Si", period:3, group:14, config:"[Ne] 3s² 3p²"},
+            {num:15, symbol:"P", period:3, group:15, config:"[Ne] 3s² 3p³"},
+            {num:16, symbol:"S", period:3, group:16, config:"[Ne] 3s² 3p⁴"},
+            {num:17, symbol:"Cl", period:3, group:17, config:"[Ne] 3s² 3p⁵"},
+            {num:18, symbol:"Ar", period:3, group:18, config:"[Ne] 3s² 3p⁶"},
+            {num:19, symbol:"K", period:4, group:1, config:"[Ar] 4s¹"},
+            {num:20, symbol:"Ca", period:4, group:2, config:"[Ar] 4s²"},
+            {num:21, symbol:"Sc", period:4, group:3, config:"[Ar] 3d¹ 4s²"},
+            {num:22, symbol:"Ti", period:4, group:4, config:"[Ar] 3d² 4s²"},
+            {num:23, symbol:"V", period:4, group:5, config:"[Ar] 3d³ 4s²"},
+            {num:24, symbol:"Cr", period:4, group:6, config:"[Ar] 3d⁵ 4s¹"},
+            {num:25, symbol:"Mn", period:4, group:7, config:"[Ar] 3d⁵ 4s²"},
+            {num:26, symbol:"Fe", period:4, group:8, config:"[Ar] 3d⁶ 4s²"},
+            {num:27, symbol:"Co", period:4, group:9, config:"[Ar] 3d⁷ 4s²"},
+            {num:28, symbol:"Ni", period:4, group:10, config:"[Ar] 3d⁸ 4s²"},
+            {num:29, symbol:"Cu", period:4, group:11, config:"[Ar] 3d¹⁰ 4s¹"},
+            {num:30, symbol:"Zn", period:4, group:12, config:"[Ar] 3d¹⁰ 4s²"},
+            {num:31, symbol:"Ga", period:4, group:13, config:"[Ar] 3d¹⁰ 4s² 4p¹"},
+            {num:32, symbol:"Ge", period:4, group:14, config:"[Ar] 3d¹⁰ 4s² 4p²"},
+            {num:33, symbol:"As", period:4, group:15, config:"[Ar] 3d¹⁰ 4s² 4p³"},
+            {num:34, symbol:"Se", period:4, group:16, config:"[Ar] 3d¹⁰ 4s² 4p⁴"},
+            {num:35, symbol:"Br", period:4, group:17, config:"[Ar] 3d¹⁰ 4s² 4p⁵"},
+            {num:36, symbol:"Kr", period:4, group:18, config:"[Ar] 3d¹⁰ 4s² 4p⁶"}
+        ];
+
+        let currentElement = null;
+
+        document.getElementById('randomBtn').onclick = function() {
+            const idx = Math.floor(Math.random() * elements.length);
+            currentElement = elements[idx];
+            document.getElementById('symbol').textContent = currentElement.symbol;
+            document.getElementById('info').textContent = '';
+            document.getElementById('showInfoBtn').disabled = false;
+        };
+
+        document.getElementById('showInfoBtn').onclick = function() {
+            if (currentElement) {
+                document.getElementById('info').innerHTML =
+                    `序号：${currentElement.num}<br>` +
+                    `周期：${currentElement.period}<br>` +
+                    `族：${currentElement.group}<br>` +
+                    `价电子排布：${currentElement.config}`;
+            }
+        };
+    </script>
+</body>
+</html>
